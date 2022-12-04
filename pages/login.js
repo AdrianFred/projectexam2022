@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,6 @@ export default function Login() {
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
     }
-    console.log(email, password);
   };
 
   const userSignIn = async (e) => {
@@ -29,10 +29,13 @@ export default function Login() {
     console.log(json);
     if (json.accessToken) {
       localStorage.setItem("token", json.accessToken);
+      localStorage.setItem("credits", json.credits);
       router.push("/");
+      toast.success("You have successfully logged in");
+    } else {
+      const error = json.errors;
+      error.map((err) => toast.error(err.message));
     }
-    setEmail("");
-    setPassword("");
   };
 
   return (
