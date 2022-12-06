@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 // export default function AuctionCard({ auction }) {
@@ -42,9 +43,11 @@ import { useState, useEffect } from "react";
 
 export default function AuctionCard({ auctions }) {
   const [data, setData] = useState([]);
+  const [url, setUrl] = useState("https://api.noroff.dev/api/v1/auction/listings?limit=10");
+
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10", {
+      const res = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +76,9 @@ export default function AuctionCard({ auctions }) {
                   <div className="font-bold ml-6 mt-4">{auctions.title}</div>
                   <div className="ml-6 mt-2">{auctions.bids}</div>
                   <div className="">
-                    <button className="bg-green p-2 ml-4 mt-8 rounded-3xl text-white min-w-[150px]">Check Item</button>
+                    <Link href={`/auction/${auctions.id}`}>
+                      <button className="bg-green p-2 ml-4 mt-8 rounded-3xl text-white min-w-[150px]">Check Item</button>
+                    </Link>
                   </div>
                 </div>
               </div>
