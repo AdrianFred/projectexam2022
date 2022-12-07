@@ -116,10 +116,10 @@ const Navbar = () => {
               <p className="uppercase tracking-widest text-green-500 ">Logged in as</p>
               <div className="flex items-center justify-around my-4 w-full sm:w-[80%]">
                 <Link href="/login">
-                  <button className="p-3 bg-green-500 rounded-xl">Log in</button>
+                  <button className="p-3 bg-green rounded-xl">Log in</button>
                 </Link>
                 <Link href="/register">
-                  <button className="p-3 bg-green-500 rounded-xl">Sign up</button>
+                  <button className="p-3 bg-green rounded-xl">Sign up</button>
                 </Link>
               </div>
             </div>
