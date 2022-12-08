@@ -1,5 +1,6 @@
 import AuctionCard from "../components/AuctionCard";
 import { useState, useEffect } from "react";
+import { BsFillLightningChargeFill } from "react-icons/bs";
 
 export default function Auction() {
   const [auctions, setAuctions] = useState([]);
@@ -23,7 +24,15 @@ export default function Auction() {
   return (
     <div className="debug-screens">
       <div>
-        <AuctionCard auctions={auctions} />
+        <div>
+          <div className="flex justify-center items-center gap-1">
+            <BsFillLightningChargeFill className="text-green" />
+            <div className=" text-2xl">Recent Auctions</div>
+          </div>
+        </div>
+        <div className="pt-6">
+          <AuctionCard auctions={auctions} />
+        </div>
       </div>
     </div>
   );

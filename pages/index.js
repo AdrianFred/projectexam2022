@@ -1,53 +1,46 @@
 import Navbar from "../components/Navbar";
 import { toast } from "react-hot-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
+import { BsFillLightningChargeFill } from "react-icons/bs";
+import AuctionCard from "../components/AuctionCard";
+import Link from "next/link";
 
 export default function Home() {
-  const [name, setName] = useState("");
+  const [auctions, setAuctions] = useState([]);
 
-  const changeInput = (e) => {
-    if (e.target.name === "name") {
-      setName(e.target.value);
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: undefined,
+      });
+      const data = await res.json();
+      setAuctions(data);
     }
-    console.log(name);
-  };
-
-  const userAll = async (e) => {
-    e.preventDefault();
-    const data = { name };
-    const res = await fetch("https://api.noroff.dev/api/v1/auction/profiles", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: undefined,
-    });
-    const json = await res.json();
-    console.log(json);
-  };
-
-  const userCreditCheck = async (e) => {
-    e.preventDefault();
-    const data = { name };
-    const res = await fetch(`https://api.noroff.dev/api/v1/auction/profiles/${name}/credits`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: undefined,
-    });
-    const json = await res.json();
-    console.log(json);
-  };
-
+    fetchData();
+  }, []);
   return (
-    <div className="debug-screens h-screen">
+    <div className="debug-screens ">
       {/* <Navbar /> */}
       <Header />
-      <div>Hello</div>
+      <div className="mt-6">
+        <div className="flex justify-center items-center gap-1">
+          <BsFillLightningChargeFill className="text-green" />
+          <div className=" text-2xl">Recent Auctions</div>
+        </div>
+        <div className="mt-6">
+          <AuctionCard auctions={auctions} />
+        </div>
+        <div className="mt-6 mb-24 flex justify-center">
+          <Link href="/auction">
+            <button className="bg-green p-2 mt-8 rounded-3xl text-white min-w-[200px]">Check Out All Listings</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

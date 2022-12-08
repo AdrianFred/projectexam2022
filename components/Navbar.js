@@ -45,26 +45,41 @@ const Navbar = () => {
     <div className={shadow ? "fixed w-full h-20 shadow-xl z-[100] bg-white" : " w-full h-20"}>
       <div className="flex justify-between items-center w-full h-full px-8 2xl:px-16 ">
         <Link href="/">
-          <Image src="/../public/assets/Logo.png" alt="/" width={100} height={100} />
+          <Image src="/../public/assets/Logo.png" alt="/" width={100} height={100} priority />
         </Link>
         <div>
-          <ul style={{ color: `${navColor}` }} className="hidden md:flex">
-            <Link href="/">
-              <li className="ml-10 text-sm uppercase hover:border-b">Home</li>
-            </Link>
-            <Link href="/auction">
-              <li className="ml-10 text-sm uppercase hover:border-b">Auctions</li>
-            </Link>
-            <Link href="/about">
-              <li className="ml-10 text-sm uppercase hover:border-b">About</li>
-            </Link>
-            <Link href="/profile">
-              <li className="ml-10 text-sm uppercase hover:border-b">Profile</li>
-            </Link>
-            <Link href="/#contact">
-              <li className="ml-10 text-sm uppercase hover:border-b">Contact</li>
-            </Link>
-          </ul>
+          {!loggedIn ? (
+            <ul style={{ color: `${navColor}` }} className="hidden md:flex items-center gap-8">
+              <Link href="/">
+                <li className=" text-sm uppercase hover:border-b ">Home</li>
+              </Link>
+              <Link href="/auction">
+                <li className=" text-sm uppercase hover:border-b border-green">Auctions</li>
+              </Link>
+              <Link href="/profile">
+                <li className=" text-sm uppercase hover:border-b border-green">Profile</li>
+              </Link>
+              <Link href="/auth/login">
+                <li className=" text-sm uppercase border-[3px] border-green p-1 rounded-lg hover:bg-green hover:text-white ">Log in</li>
+              </Link>
+            </ul>
+          ) : (
+            <ul style={{ color: `${navColor}` }} className="hidden md:flex items-center gap-8">
+              <Link href="/">
+                <li className=" text-sm uppercase hover:border-b ">Home</li>
+              </Link>
+              <Link href="/auction">
+                <li className=" text-sm uppercase hover:border-b border-green">Auctions</li>
+              </Link>
+              <Link href="/profile">
+                <li className=" text-sm uppercase hover:border-b border-green">Profile</li>
+              </Link>
+              <Link href="/auth/login">
+                <li className=" text-sm uppercase border-[3px] border-green p-1 rounded-lg hover:bg-green hover:text-white ">register</li>
+              </Link>
+            </ul>
+          )}
+
           <div onClick={toggleNav} className="md:hidden">
             <AiOutlineMenu size={25} />
           </div>
@@ -81,7 +96,7 @@ const Navbar = () => {
           <div>
             <div className="flex w-full items-center justify-between">
               <Link href="/">
-                <Image src="/../public/assets/Logo.png" alt="/" width={150} height={35} />
+                <Image src="/../public/assets/Logo.png" alt="/" width={150} height={150} />
               </Link>
               <div onClick={toggleNav} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer">
                 <AiOutlineClose size={25} />
