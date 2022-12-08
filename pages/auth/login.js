@@ -36,6 +36,7 @@ export default function Login() {
     if (json.accessToken) {
       localStorage.setItem("token", json.accessToken);
       localStorage.setItem("credits", json.credits);
+      localStorage.setItem("name", json.name);
       router.push("/");
       toast.success("You have successfully logged in");
     } else {

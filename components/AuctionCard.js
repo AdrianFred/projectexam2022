@@ -64,7 +64,7 @@ const AuctionCard = (props) => {
                   <div>
                     <img className="pt-3 rounded-tr-3xl rounded-bl-3xl" src={auction.media} alt="/" width={250} height={150} />
                   </div>
-                  <div className="font-bold ml-6 mt-4">{auction.title}</div>
+                  <div className="font-bold ml-6 mt-4 max-w-[230px]">{auction.title}</div>
                   <div className="ml-6 mt-2">{auction.bids}</div>
                   <div className="">
                     <Link href={`/auction/${auction.id}`}>

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
+import Header from "../components/Header";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -43,7 +44,9 @@ export default function Home() {
   };
 
   return (
-    <div className="debug-screens h-[2000px]">
+    <div className="debug-screens h-screen">
+      {/* <Navbar /> */}
+      <Header />
       <div>Hello</div>
     </div>
   );

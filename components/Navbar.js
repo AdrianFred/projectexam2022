@@ -36,6 +36,8 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("credits");
+    localStorage.removeItem("name");
+    setLoggedIn(false);
     router.reload();
   };
 
@@ -101,11 +103,6 @@ const Navbar = () => {
                   Auctions
                 </li>
               </Link>
-              <Link href="/about">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  About
-                </li>
-              </Link>
               <Link href="/profile">
                 <li onClick={toggleNav} className="py-4 text-sm">
                   Profile
@@ -114,19 +111,25 @@ const Navbar = () => {
             </ul>
             <div className="pt-10">
               <p className="uppercase tracking-widest text-green-500 ">Logged in as</p>
-              <div className="flex items-center justify-around my-4 w-full sm:w-[80%]">
+              <div className="flex items-center justify-around my-4 w-full ">
                 {!loggedIn ? (
-                  <Link href="/login">
-                    <button className="py-4 px-8 bg-green rounded-xl text-white">Log in</button>
+                  <Link href="/auth/login">
+                    <button onClick={toggleNav} className="py-4 px-8 bg-green rounded-xl text-white">
+                      Log in
+                    </button>
                   </Link>
                 ) : (
                   <Link href="/profile">
-                    <button className="py-4 px-8 bg-green rounded-xl text-white">Profile</button>
+                    <button onClick={toggleNav} className="py-4 px-8 bg-green rounded-xl text-white">
+                      Profile
+                    </button>
                   </Link>
                 )}
                 {!loggedIn ? (
-                  <Link href="/register">
-                    <button className="py-4 px-8 bg-green rounded-xl text-white">Sign up</button>
+                  <Link href="/auth/register">
+                    <button onClick={toggleNav} className="py-4 px-8 bg-green rounded-xl text-white">
+                      Sign up
+                    </button>
                   </Link>
                 ) : (
                   <button onClick={handleLogout} className="py-4 px-8 bg-red-500 rounded-xl text-white">
