@@ -22,8 +22,9 @@ export default function Auction() {
 
   return (
     <div className="debug-screens">
-      <div>Hello</div>
-      <AuctionCard auctions={auctions} />
+      <div>
+        <AuctionCard auctions={auctions} />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,6 @@ export default function AuctionCard({ auctions }) {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  // const [url, setUrl] = useState("https://api.noroff.dev/api/v1/auction/listings/");
   const router = useRouter();
   const { postId } = router.query;
 

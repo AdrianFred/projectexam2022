@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [shadow, setShadow] = useState(false);
-  const [navBg, setNavBg] = useState("#ecf0f3");
   const [navColor, setNavColor] = useState("#1f2937");
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
@@ -41,7 +40,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className={shadow ? "fixed w-full h-20 shadow-xl z-[100]" : "fixed w-full h-20 z-[100]"}>
+    <div className={shadow ? "fixed w-full h-20 shadow-xl z-[100] bg-white" : " w-full h-20"}>
       <div className="flex justify-between items-center w-full h-full px-8 2xl:px-16 ">
         <Link href="/">
           <Image src="/../public/assets/Logo.png" alt="/" width={100} height={100} />

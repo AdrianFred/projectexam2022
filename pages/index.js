@@ -43,16 +43,8 @@ export default function Home() {
   };
 
   return (
-    <div className="debug-screens">
-      <Navbar />
-      <button onClick={userAll} className="mt-[400px] bg-green w-48 h-12">
-        Test credits
-      </button>
-      <form onSubmit={userCreditCheck}>
-        <label>Name</label>
-        <input name="name" onChange={changeInput} type="text" />
-        <button>Submit</button>
-      </form>
+    <div className="debug-screens h-[2000px]">
+      <div>Hello</div>
     </div>
   );
 }
