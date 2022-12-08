@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import formatDate from "../../components/tools/DateFormatter";
 
 export default function AuctionCard({ auctions }) {
   const [data, setData] = useState([]);
@@ -29,7 +30,7 @@ export default function AuctionCard({ auctions }) {
       <div className="flex shadow-2xl  rounded-tr-3xl rounded-bl-3xl bg-white p-4 min-w-[250px]">
         <div>
           <div className="pt-4 text-center">Time Remaining</div>
-          <div className="text-green font-bold pt-2 text-center">Date({data.endsAt})</div>
+          <div className="text-green font-bold pt-2 text-center">{formatDate(data.endsAt)}</div>
           <div>
             <img className="pt-3 rounded-tr-3xl rounded-bl-3xl" src={data.media} alt="/" width={250} height={150} />
           </div>
