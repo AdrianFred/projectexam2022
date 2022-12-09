@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState([]);
+  const [button, setButton] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,6 +22,10 @@ export default function Profile() {
     fetchData();
   }, []);
 
+  const handleButton = () => {
+    setButton(!button);
+  };
+
   return (
     <div className="debug-screens">
       <div className="flex justify-center">
@@ -34,8 +39,20 @@ export default function Profile() {
             )}
 
             <div className="flex justify-center pt-6">
-              <button className="bg-green p-3 rounded-3xl text-white ">Change profile picture?</button>
+              <button onClick={handleButton} className="bg-green p-3 rounded-3xl text-white ">
+                Change profile picture?
+              </button>
             </div>
+            {button ? (
+              <div className="flex justify-center pt-6">
+                <label for="file-upload" className=" p-3 ">
+                  Test
+                </label>
+                <input type="text" className="p-3 rounded-3xl text-white" />
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
           <div className="text-lg pt-8">
             <div>
