@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10", {
+      const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10&sort=created&sortOrder=desc", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -23,6 +23,7 @@ export default function Home() {
     }
     fetchData();
   }, []);
+
   return (
     <div className="debug-screens ">
       {/* <Navbar /> */}

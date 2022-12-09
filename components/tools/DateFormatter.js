@@ -4,3 +4,14 @@ export default function formatDate(date) {
   });
   return formattedDate;
 }
+
+export function formatTimeLeft(date) {
+  const currentDate = new Date();
+  const endDate = new Date(date);
+  const timeLeft = endDate - currentDate;
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+  const seconds = Math.floor((timeLeft / 1000) % 60);
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}

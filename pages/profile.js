@@ -5,6 +5,11 @@ export default function Profile() {
   const [userInfo, setUserInfo] = useState([]);
   const [button, setButton] = useState(false);
   const router = useRouter();
+  console.log(userInfo);
+
+  const uppercaseFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -32,10 +37,10 @@ export default function Profile() {
         <div>
           <div className="text-2xl text-green">Profile</div>
           <div className="pt-6">
-            {!userInfo.image ? (
-              <img src="/assets/man.jpg" className="w-[300px] rounded-2xl"></img>
+            {!userInfo.avatar ? (
+              <img src="/assets/man.jpg" className="w-[300px] rounded-2xl border-2"></img>
             ) : (
-              <img src={userInfo.image} className="w-[300px] rounded-2xl"></img>
+              <img src={userInfo.avatar} className="w-[300px] rounded-2xl border-2"></img>
             )}
 
             <div className="flex justify-center pt-6">
@@ -58,10 +63,12 @@ export default function Profile() {
             <div>
               <p className="text-green">Name</p>
               <p className="ml-4">{userInfo.name}</p>
+              <p className="ml-4">{uppercaseFirstLetter(userInfo.name)}</p>
             </div>
             <div>
               <p className="text-green">Email</p>
               <p className="ml-4">{userInfo.email}</p>
+              <p className="ml-4">{uppercaseFirstLetter(userInfo.email)}</p>
             </div>
             <div>
               <p className="text-green">Credits</p>
