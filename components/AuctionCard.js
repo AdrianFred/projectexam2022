@@ -1,9 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import backupImg from "../public/assets/Car.jpg";
-import formatDate from "./tools/DateFormatter";
 import { formatTimeLeft } from "./tools/DateFormatter";
-import { useEffect, useState } from "react";
 
 const AuctionCard = (props) => {
   return (
@@ -15,9 +11,7 @@ const AuctionCard = (props) => {
               <div key={auction.id} className="flex shadow-2xl  rounded-tr-3xl rounded-bl-3xl bg-white p-4 min-w-[250px]">
                 <div>
                   <div className="pt-4 text-center">Time Remaining</div>
-                  <div data-id={auction.id} data-endDate={auction.endsAt} className="text-green font-bold pt-2 text-center">
-                    {formatTimeLeft(auction.endsAt)}
-                  </div>
+                  <div className="text-green font-bold pt-2 text-center">{formatTimeLeft(auction.endsAt)}</div>
                   <div>
                     <img className="pt-3 rounded-tr-3xl rounded-bl-3xl" src={auction.media[0]} alt="/" width={250} height={150} />
                   </div>

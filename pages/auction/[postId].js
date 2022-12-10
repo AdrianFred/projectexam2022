@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import formatDate from "../../components/tools/DateFormatter";
 
@@ -7,7 +7,7 @@ export default function AuctionCard({ auctions }) {
   const [loader, setLoader] = useState(true);
 
   const router = useRouter();
-  const postId = router.query.postId;
+  const { postId } = router.query;
 
   useEffect(() => {
     if (!postId) {

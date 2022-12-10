@@ -16,7 +16,7 @@ export default function Footer() {
     <footer className="bg-gray-200 py-5 fixed bottom-0 w-full">
       <div className="flex items-center justify-between px-2">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-gray-500 text-sm">© Auction House</p>
+          <p className="text-sm">© Auction House</p>
         </div>
         <div>
           <div>Welcome: {TestName}</div>

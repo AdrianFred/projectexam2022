@@ -1,6 +1,7 @@
 import AuctionCard from "../components/AuctionCard";
 import { useState, useEffect } from "react";
 import { BsFillLightningChargeFill } from "react-icons/bs";
+import Head from "next/head";
 
 export default function Auction({ results }) {
   const [auctions, setAuctions] = useState([]);
@@ -8,7 +9,7 @@ export default function Auction({ results }) {
 
   // useEffect(() => {
   //   async function fetchData() {
-  //     const res = await fetch("https://api.noroff.dev/api/v1/auction/listings", {
+  //     const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10", {
   //       method: "GET",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -22,19 +23,26 @@ export default function Auction({ results }) {
   // }, []);
 
   return (
-    <div className="debug-screens">
-      <div>
+    <>
+      <Head>
+        <title>Auctions</title>
+        <meta name="description" content="Auctions" />
+        <lang content="en" />
+      </Head>
+      <div className="debug-screens">
         <div>
-          <div className="flex justify-center items-center gap-1">
-            <BsFillLightningChargeFill className="text-green" />
-            <div className=" text-2xl">Recent Auctions</div>
+          <div>
+            <div className="flex justify-center items-center gap-1">
+              <BsFillLightningChargeFill className="text-green" />
+              <div className=" text-2xl">Recent Auctions</div>
+            </div>
+          </div>
+          <div className="pt-6">
+            <AuctionCard auctions={results} />
           </div>
         </div>
-        <div className="pt-6">
-          <AuctionCard auctions={results} />
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 
