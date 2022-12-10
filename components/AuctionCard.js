@@ -9,8 +9,8 @@ const AuctionCard = (props) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-4">
-        {props.auctions.map((auction) => {
-          if (auction.media.length !== 0) {
+        {props.auctions?.map((auction) => {
+          if (auction.media?.length !== 0) {
             return (
               <div key={auction.id} className="flex shadow-2xl  rounded-tr-3xl rounded-bl-3xl bg-white p-4 min-w-[250px]">
                 <div>

@@ -6,20 +6,20 @@ export default function Auction({ results }) {
   const [auctions, setAuctions] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("https://api.noroff.dev/api/v1/auction/listings", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: undefined,
-      });
-      const data = await res.json();
-      setAuctions(data);
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const res = await fetch("https://api.noroff.dev/api/v1/auction/listings", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: undefined,
+  //     });
+  //     const data = await res.json();
+  //     setAuctions(data);
+  //   }
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="debug-screens">
@@ -39,7 +39,7 @@ export default function Auction({ results }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true", {
+  const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=30", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -53,21 +53,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
-// export default async function handler(req, res) {
-//   const { method } = req;
-
-//   switch (method) {
-//     case "GET":
-//       try {
-//         const auctions = await prisma.auction.findMany();
-//         res.status(200).json(auctions);
-//       } catch (error) {
-//         res.status(400).json({ message: "Something went wrong" });
-//       }
-//       break;
-//     default:
-//       res.setHeader("Allow", ["GET"]);
-//       res.status(405).end(`Method ${method} Not Allowed`);
-//   }
-// }

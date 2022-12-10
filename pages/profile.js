@@ -63,12 +63,12 @@ export default function Profile() {
             <div>
               <p className="text-green">Name</p>
               <p className="ml-4">{userInfo.name}</p>
-              <p className="ml-4">{uppercaseFirstLetter(userInfo.name)}</p>
+              {/* <p className="ml-4">{uppercaseFirstLetter(userInfo.name)}</p> */}
             </div>
             <div>
               <p className="text-green">Email</p>
               <p className="ml-4">{userInfo.email}</p>
-              <p className="ml-4">{uppercaseFirstLetter(userInfo.email)}</p>
+              {/* <p className="ml-4">{uppercaseFirstLetter(userInfo.email)}</p> */}
             </div>
             <div>
               <p className="text-green">Credits</p>
