@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import safetyImg from "../public/assets/man.jpg";
+import Image from "next/image";
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState([]);
   const [button, setButton] = useState(false);
+  const [avatar, setAvatar] = useState("");
   const router = useRouter();
-  console.log(userInfo);
 
   const uppercaseFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -31,6 +33,20 @@ export default function Profile() {
     setButton(!button);
   };
 
+  const handleSubmit = async () => {
+    const res = await fetch(`https://api.noroff.dev/api/v1/auction/profiles/${userInfo.name}/media`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        avatar: avatar,
+      }),
+    });
+    router.reload();
+  };
+
   return (
     <div className="debug-screens">
       <div className="flex justify-center">
@@ -38,9 +54,10 @@ export default function Profile() {
           <div className="text-2xl text-green">Profile</div>
           <div className="pt-6">
             {!userInfo.avatar ? (
-              <img src="/assets/man.jpg" className="w-[300px] rounded-2xl border-2"></img>
+              // <img src={safetyImg} className="w-[300px] rounded-2xl border-2"></img>
+              <Image src={safetyImg} className="w-[300px] rounded-2xl border-2" alt="An image of a default user with no avatar" />
             ) : (
-              <img src={userInfo.avatar} className="w-[300px] rounded-2xl border-2"></img>
+              <img src={userInfo.avatar} className="w-[300px] rounded-2xl border-2" alt="A profile picture of a user with an avatar"></img>
             )}
 
             <div className="flex justify-center pt-6">
@@ -49,11 +66,20 @@ export default function Profile() {
               </button>
             </div>
             {button ? (
-              <div className="flex justify-center pt-6">
+              <div className="flex flex-col justify-center pt-6">
                 <label for="file-upload" className=" p-3 ">
-                  Test
+                  New Url:
                 </label>
-                <input type="text" className="p-3 rounded-3xl text-white" />
+                <input
+                  type="textarea"
+                  className="p-3 rounded-3xl  max-w-[400px]"
+                  onChange={(e) => {
+                    setAvatar(e.target.value);
+                  }}
+                />
+                <button onClick={handleSubmit} className="bg-green p-3 rounded-3xl text-white max-w-[150px] min-w-[150px] mx-auto mt-4">
+                  Submit
+                </button>
               </div>
             ) : (
               <div></div>
