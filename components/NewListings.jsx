@@ -1,4 +1,47 @@
+import { use, useState } from "react";
+import { toast } from "react-hot-toast";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 export default function NewListings() {
+  const router = useRouter();
+  const [input, setInput] = useState({
+    title: "",
+    description: "",
+    media: [],
+    endsAt: "2022-12-14T21:44:58.853Z",
+  });
+  const changeInput = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+    console.log(input);
+  };
+  const changeMedia = (e) => {
+    if (e.target.name === "media") {
+      setInput({ ...input, media: [e.target.value] });
+    }
+    console.log(input);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("https://api.noroff.dev/api/v1/auction/listings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(input),
+    });
+    const data = await res.json();
+
+    if (res.status === 201) {
+      toast.success("Listing created");
+      router.push(`/auction/${data.id}`);
+    } else {
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <>
       <div className="debug-screens flex justify-center items-center">
@@ -8,11 +51,11 @@ export default function NewListings() {
             <div className="flex justify-center items-center h-[450px]">
               <form>
                 <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Name</label>
+                  <label className="text-sm font-bold">Post-Title</label>
                   <input
-                    // onChange={changeInput}
-                    placeholder="Peter Griffin"
-                    name="name"
+                    onChange={changeInput}
+                    placeholder="A nice car"
+                    name="title"
                     type="text"
                     className="border-b border-gray-300 focus:outline-none focus:border-green"
                     required
@@ -21,42 +64,44 @@ export default function NewListings() {
                   />
                 </div>
                 <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Email</label>
-                  <input
-                    // onChange={changeInput}
-                    placeholder="example.noroff.no"
-                    name="email"
-                    type="email"
+                  <label className="text-sm font-bold">Description</label>
+                  <textarea
+                    onChange={changeInput}
+                    name="description"
+                    type="textarea"
                     className="border-b border-gray-300 focus:outline-none focus:border-green"
                     required
-                    pattern="^[\w\-.]+@stud.?noroff.no$|^[\w\-.]+@?noroff.no$"
-                    title="Only users with a Noroff email account may sign up. Email must end in (stud.)noroff.no"
+                    pattern="https?://.+"
+                    Title="Please enter a valid URL"
                   />
                 </div>
                 <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Password</label>
+                  <label className="text-sm font-bold">Media/URL</label>
                   <input
-                    // onChange={changeInput}
-                    name="password"
-                    type="password"
+                    onChange={changeMedia}
+                    name="media"
+                    type="text"
                     className="border-b border-gray-300 focus:outline-none focus:border-green"
                     required
                     minLength={8}
+                    pattern="https?://.+"
+                    Title="Please enter a valid URL"
                   />
                 </div>
                 <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Confirm Password</label>
+                  <label className="text-sm font-bold">Ending Date</label>
                   <input
                     // onChange={changeInput}
-                    name="passwordConfirmation"
-                    type="password"
+                    name="endsAt"
+                    type="date"
                     className="border-b border-gray-300 focus:outline-none focus:border-green"
                     required
-                    minLength={8}
                   />
                 </div>
                 <div className="pt-24 text-center">
-                  <button className="bg-green h-12 w-24 rounded-lg text-white">Register</button>
+                  <button onClick={handleSubmit} className="bg-green h-12 w-36 rounded-lg text-white transition duration-200 hover:scale-125 ">
+                    Post Listing
+                  </button>
                 </div>
               </form>
             </div>
