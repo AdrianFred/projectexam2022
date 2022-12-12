@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/router";
+import logoImg from "../public/assets/Logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
     <div className={shadow ? "fixed w-full h-20 shadow-xl z-[100] bg-white" : " w-full h-20"}>
       <div className="flex justify-between items-center w-full h-full px-8 2xl:px-16 ">
         <Link href="/">
-          <Image src="/../public/assets/Logo.png" alt="/" width={100} height={100} priority />
+          <Image src={logoImg} alt="/" width={100} height={100} priority />
         </Link>
         <div>
           {!loggedIn ? (
@@ -75,7 +76,12 @@ const Navbar = () => {
                 <li className=" text-sm uppercase hover:border-b border-green">Profile</li>
               </Link>
               <Link href="/auth/login">
-                <li className=" text-sm uppercase border-[3px] border-green p-1 rounded-lg hover:bg-green hover:text-white ">register</li>
+                <li
+                  onClick={handleLogout}
+                  className=" text-sm uppercase border-[3px] border-green p-1 rounded-lg hover:bg-red-500 hover:text-white hover:border-red-500 "
+                >
+                  Logout
+                </li>
               </Link>
             </ul>
           )}
@@ -96,7 +102,7 @@ const Navbar = () => {
           <div>
             <div className="flex w-full items-center justify-between">
               <Link href="/">
-                <Image src="/../public/assets/Logo.png" alt="/" width={150} height={150} />
+                <Image src={logoImg} alt="/" width={150} height={150} />
               </Link>
               <div onClick={toggleNav} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer">
                 <AiOutlineClose size={25} />

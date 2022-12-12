@@ -14,19 +14,23 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(`https://api.noroff.dev/api/v1/auction/profiles/${localStorage.getItem("name")}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: undefined,
-      });
-      const data = await res.json();
-      setUserInfo(data);
+    if (!localStorage.getItem("token")) {
+      router.push("/auth/login");
+    } else {
+      async function fetchData() {
+        const res = await fetch(`https://api.noroff.dev/api/v1/auction/profiles/${localStorage.getItem("name")}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: undefined,
+        });
+        const data = await res.json();
+        setUserInfo(data);
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
 
   const handleButton = () => {
