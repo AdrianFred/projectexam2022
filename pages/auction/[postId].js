@@ -23,6 +23,7 @@ export default function AuctionCard({ auctions }) {
       });
       const data = await res.json();
       setData(data);
+      console.log(data);
     };
     fetchSomething();
     setLoader(false);
