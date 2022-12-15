@@ -8,5 +8,5 @@ module.exports = {
       colors: { ...colors, green: "#0C5F3B", bg: "#f2f2f2", black: "#08090a" },
     },
   },
-  plugins: [require("tailwindcss-debug-screens")],
+  plugins: [require("tailwindcss-debug-screens"), require("@tailwindcss/line-clamp")],
 };
