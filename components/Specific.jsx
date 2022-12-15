@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { toast } from "react-hot-toast";
+import { RiAuctionFill } from "react-icons/ri";
+import { convertDateToHours } from "./tools/DateFormatter";
 
 export default function Specific({ info }) {
   const { id, title, description, media, endsAt, bids } = info;
@@ -87,7 +89,7 @@ export default function Specific({ info }) {
           <p className="text-sm text-gray-500 mx-4 max-w-[280px] pt-1">{description}</p>
           <p className="mx-4">Current Bid: {highestBid()}</p>
         </div>
-        <div className="pb-44">
+        <div className="pb-12">
           <div className="flex flex-col justify-around shadow-2xl rounded-3xl bg-white w-[300px] h-32 mx-auto">
             <div className="mx-5">
               <h4 className="font-bold text-xl">Place Bid</h4>
@@ -99,6 +101,27 @@ export default function Specific({ info }) {
                 Place Bid
               </button>
             </form>
+          </div>
+        </div>
+        <div className="pb-44">
+          <div className="pt-6 shadow-2xl rounded-3xl bg-white w-[300px] h-[275px]">
+            <div className="ml-4">
+              <h5 className="font-bold text-xl">Bidding History (recents)</h5>
+            </div>
+            <div className="ml-4">
+              <ul className="mt-4">
+                {sortedBids.slice(0, 4).map((bid) => (
+                  <li key={bid.id} className="flex items-center gap-4">
+                    <RiAuctionFill size={24} className="text-green" />
+                    <div>
+                      <p className="truncate w-24 ">{bid.bidderName.charAt(0).toUpperCase() + bid.bidderName.slice(1)}</p>
+                      <p className="text-sm text-gray-500">{bid.amount} Credits</p>
+                    </div>
+                    <div className="ml-6">{convertDateToHours(bid.created)} Ago</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

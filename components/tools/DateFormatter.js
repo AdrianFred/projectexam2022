@@ -21,3 +21,12 @@ export function convertDate(date) {
   const isoDate = newDate.toISOString();
   return isoDate;
 }
+
+export function convertDateToHours(date) {
+  const currentDate = new Date();
+  const newDate = new Date(date);
+  const timeSince = currentDate - newDate;
+  const hours = Math.floor(timeSince / (1000 * 60 * 60));
+  const minutes = Math.floor((timeSince / 1000 / 60) % 60);
+  return `${hours}h ${minutes}m`;
+}
