@@ -2,25 +2,24 @@ import AuctionCard from "../components/AuctionCard";
 import { useState, useEffect } from "react";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import Head from "next/head";
+import useSWR from "swr";
 
-export default function Auction({ results }) {
+const defaultUrl = "https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=12";
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function Auction({}) {
   const [auctions, setAuctions] = useState([]);
-  const [loader, setLoader] = useState(true);
+  const [offset, setOffset] = useState(0);
+  const [hidden, setHidden] = useState(true);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: undefined,
-  //     });
-  //     const data = await res.json();
-  //     setAuctions(data);
-  //   }
-  //   fetchData();
-  // }, []);
+  const { data, error } = useSWR(`${defaultUrl}&offset=${offset}`, fetcher);
+
+  const handlePageNext = () => {
+    setOffset(offset + 12);
+  };
+  const handlePagePrevious = () => {
+    setOffset(offset - 12);
+  };
 
   return (
     <>
@@ -38,26 +37,19 @@ export default function Auction({ results }) {
             </div>
           </div>
           <div className="pt-6">
-            <AuctionCard auctions={results} />
+            <AuctionCard auctions={data} />
+          </div>
+          <div className="pb-40 pt-10 flex justify-center gap-6">
+            <button onClick={offset === 0 ? null : handlePagePrevious} className={offset === 0 ? "hover:cursor-not-allowed" : "bg-red-500"}>
+              Previous Page
+            </button>
+            <div>{offset / 12}</div>
+            <button onClick={handlePageNext} className="">
+              NextPage
+            </button>
           </div>
         </div>
       </div>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=30", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: undefined,
-  });
-  const data = await res.json();
-  return {
-    props: {
-      results: data,
-    },
-  };
 }
