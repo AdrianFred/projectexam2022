@@ -9,21 +9,6 @@ import Link from "next/link";
 export default function Home({ results }) {
   const [auctions, setAuctions] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?limit=10&sort=created&sortOrder=desc", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: undefined,
-      });
-      const data = await res.json();
-      setAuctions(data);
-    }
-    fetchData();
-  }, []);
-
   return (
     <div className="debug-screens ">
       {/* <Navbar /> */}
@@ -34,12 +19,16 @@ export default function Home({ results }) {
           <div className=" text-2xl">Recent Auctions</div>
         </div>
         {/* <div className="mt-6">
-          <AuctionCard auctions={auctions} />
+          <AuctionCard auctions={results} />
         </div> */}
-        <div className="flex flex-col items-center justify-center gap-4 max-w-[1200px] mx-auto md:grid md:grid-cols-3 md:gap-3 2xl:grid-cols-4 2xl:max-w-[1600px] ">
-          {results?.map((result) => {
-            return <AuctionCard key={result.id} auctions={result} />;
-          })}
+        <div className="flex flex-col items-center justify-center gap-4 max-w-[1200px] mx-auto md:grid md:grid-cols-3 md:gap-4 2xl:grid-cols-4 2xl:max-w-[1600px] 2xl:gap-x-0">
+          {results.length !== undefined ? (
+            results.map((result) => {
+              return <AuctionCard key={result.id} auctions={result} />;
+            })
+          ) : (
+            <div className="text-2xl">No auctions found</div>
+          )}
         </div>
         <div className="mt-6 mb-24 flex justify-center">
           <Link href="/auction">
@@ -60,9 +49,13 @@ export async function getServerSideProps() {
     body: undefined,
   });
   const data = await res.json();
-  return {
-    props: {
-      results: data,
-    },
-  };
+  if (!data) {
+    return null;
+  } else {
+    return {
+      props: {
+        results: data,
+      },
+    };
+  }
 }

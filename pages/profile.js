@@ -8,6 +8,7 @@ export default function Profile() {
   const [button, setButton] = useState(false);
   const [avatar, setAvatar] = useState("");
   const router = useRouter();
+  console.log(userInfo);
 
   const uppercaseFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -18,7 +19,7 @@ export default function Profile() {
       router.push("/auth/login");
     } else {
       async function fetchData() {
-        const res = await fetch(`https://api.noroff.dev/api/v1/auction/profiles/${localStorage.getItem("name")}`, {
+        const res = await fetch(`https://api.noroff.dev/api/v1/auction/profiles/${localStorage.getItem("name")}?_listings=true`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
