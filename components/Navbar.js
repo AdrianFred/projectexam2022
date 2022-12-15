@@ -72,7 +72,7 @@ const Navbar = () => {
               <Link href="/auction">
                 <li className=" text-sm uppercase hover:border-b border-green">Auctions</li>
               </Link>
-              <Link href="/profile">
+              <Link href="/profile" prefetch>
                 <li className=" text-sm uppercase hover:border-b border-green">Profile</li>
               </Link>
               <Link href="/auth/login">

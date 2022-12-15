@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import Specific from "../../components/Specific";
+// import { useRouter } from "next/router";
 import formatDate from "../../components/tools/DateFormatter";
 
 export async function getServerSideProps({ query }) {
   const { postId } = query;
-  const res = await fetch(`https://api.noroff.dev/api/v1/auction/listings/${postId}`, {
+  const res = await fetch(`https://api.noroff.dev/api/v1/auction/listings/${postId}?_active=true&_seller=true&_bids=true`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +21,6 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function AuctionCard({ results }) {
-  const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const { id, title, description, media, endsAt } = results;
 
@@ -30,26 +30,7 @@ export default function AuctionCard({ results }) {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      {!loader ? (
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-2xl">Loading...</div>
-        </div>
-      ) : (
-        <div key={id} className="flex shadow-2xl  rounded-tr-3xl rounded-bl-3xl bg-white p-4 min-w-[250px]">
-          <div>
-            <div className="pt-4 text-center">Time Remaining</div>
-            <div className="text-green font-bold pt-2 text-center">{formatDate(endsAt)}</div>
-            <div>
-              <img className="pt-3 rounded-tr-3xl rounded-bl-3xl" src={media} alt="/" width={250} height={150} />
-            </div>
-            <div className="font-bold ml-6 mt-4">{title}</div>
-            <div className="ml-6 mt-2">{description}</div>
-            <div className="">
-              <button className="bg-green p-2 ml-4 mt-8 rounded-3xl text-white min-w-[150px]">test</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Specific info={results} />
     </div>
   );
 }
