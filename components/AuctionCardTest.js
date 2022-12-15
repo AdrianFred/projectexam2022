@@ -9,9 +9,14 @@ const AuctionCard = (props) => {
           <div className="pt-4 text-center">Time Remaining</div>
           <div className="text-green font-bold pt-2 text-center">{formatTimeLeft(props.auctions.endsAt)}</div>
           <div>
-            <img className="pt-3 rounded-tr-3xl rounded-bl-3xl object-cover h-[200px]" src={props.auctions.media[0]} alt="/" width="250px" />
+            <img
+              className="pt-3 rounded-tr-3xl rounded-bl-3xl object-cover h-[200px]"
+              src={props.auctions.media[0]}
+              alt="Image of the item they auctioned"
+              width="250px"
+            />
           </div>
-          <div className="font-bold ml-6 mt-4 max-w-[230px] break-words">{props.auctions.title}</div>
+          <div className="font-bold ml-6 mt-4 max-w-[230px] break-words h-12 line-clamp-2 ">{props.auctions.title}</div>
           <div className="ml-6 mt-2">{props.auctions.bids}</div>
           <div className="">
             <Link href={`/auction/${props.auctions.id}`}>
