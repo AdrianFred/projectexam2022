@@ -5,25 +5,47 @@ import Header from "../components/Header";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import AuctionCard from "../components/AuctionCardTest";
 import Link from "next/link";
+import { filterResults } from "../components/tools/SearchFilter";
 
 export default function Home({ results }) {
-  const [auctions, setAuctions] = useState([]);
+  const [slice, setSlice] = useState(12);
+  const [search, setSearch] = useState(results);
+
+  const searchButton = (e) => {
+    e.preventDefault();
+    const search = e.target[0].value;
+    const test = filterResults(search, { results });
+    console.log(test);
+  };
+
+  const searchInput = (e) => {
+    const search = e.target.value;
+    const test = filterResults(search, { results });
+    setSearch(test);
+  };
 
   return (
     <div className="debug-screens ">
       {/* <Navbar /> */}
       <Header />
+      <div className="flex justify-center pt-6">
+        <form onSubmit={searchButton}>
+          <input type="text" onChange={searchInput} />
+          <button className="pl-4" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+
       <div className="mt-6">
         <div className="flex justify-center items-center gap-1">
           <BsFillLightningChargeFill className="text-green" />
           <div className=" text-2xl">Recent Auctions</div>
         </div>
-        {/* <div className="mt-6">
-          <AuctionCard auctions={results} />
-        </div> */}
+        <div className="mt-6"></div>
         <div className="flex flex-col items-center justify-center gap-4 max-w-[1200px] mx-auto md:grid md:grid-cols-3 md:gap-4 2xl:grid-cols-4 2xl:max-w-[1600px] 2xl:gap-x-0">
-          {results.length !== undefined ? (
-            results.map((result) => {
+          {search.length !== undefined ? (
+            search.slice(0, slice).map((result) => {
               return <AuctionCard key={result.id} auctions={result} />;
             })
           ) : (
@@ -41,7 +63,7 @@ export default function Home({ results }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=12", {
+  const res = await fetch("https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=100", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
