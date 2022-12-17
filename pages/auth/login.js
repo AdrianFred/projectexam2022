@@ -39,6 +39,9 @@ export default function Login() {
       localStorage.setItem("name", json.name);
       router.push("/");
       toast.success("You have successfully logged in");
+      setTimeout(() => {
+        router.reload();
+      }, 1000);
     } else {
       const error = json.errors;
       error.map((err) => toast.error(err.message));
