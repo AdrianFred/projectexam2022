@@ -54,17 +54,19 @@ export default function Specific({ info }) {
           error.map((err) => toast.error(err.message));
         } else if (json.id) {
           toast.success("You have successfully placed a bid");
-          router.reload();
         }
       });
+    setTimeout(() => {
+      router.reload();
+    }, 2000);
   };
 
   return (
     <>
-      <div>
+      <div className="w-[70%]">
         <div className="flex justify-center items-center gap-1">
-          <BsFillLightningChargeFill size={24} className="text-green" />
-          <h1 className="text-lg">{title}</h1>
+          <BsFillLightningChargeFill size={20} className="text-green" />
+          <h1 className="text-lg font-semibold">{title}</h1>
         </div>
         <MediaGallery media={media} />
         <div className="pt-12 pb-8">
@@ -73,7 +75,7 @@ export default function Specific({ info }) {
           <p className="mx-4">Current Bid: {highestBid()}</p>
         </div>
         <div className="pb-12">
-          <div className="flex flex-col justify-around shadow-2xl rounded-3xl bg-white w-[300px] h-32 mx-auto">
+          <div className="flex flex-col justify-around shadow-2xl rounded-3xl bg-white  h-32 mx-auto">
             <div className="mx-5">
               <h4 className="font-bold text-xl">Place Bid</h4>
               <p className="text-sm">Minimum Bid: {minBidDisplay()}</p>
