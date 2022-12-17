@@ -7,7 +7,9 @@ export default function NewListing() {
       <Head>
         <title>New Listings</title>
       </Head>
-      <NewListings />
+      <div className="pt-32">
+        <NewListings />
+      </div>
     </>
   );
 }
