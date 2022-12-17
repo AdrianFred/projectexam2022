@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
     <div className="debug-screens ">
@@ -9,7 +11,9 @@ export default function Header() {
             Auction House is expanding to the web to supply both online and locally
           </p>
           <div className="flex justify-center pt-6">
-            <button className="bg-green px-6 py-2 rounded-2xl text-white">Start Browsing</button>
+            <Link href="/auction">
+              <button className="bg-green px-6 py-2 rounded-2xl text-white">Start Browsing</button>
+            </Link>
           </div>
         </div>
       </div>
