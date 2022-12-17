@@ -1,79 +1,15 @@
-import { useState } from "react";
-
-import { useRouter } from "next/router";
-
-function Pagination() {
-  const router = useRouter();
-  const { page = 1 } = router.query;
-
+export default function PageButton(props) {
   return (
-    <div>
-      <p>You are currently on page {page}</p>
-      <button onClick={() => router.push(`/blog?page=${Number(page) - 1}`)}>Previous</button>
-      <button onClick={() => router.push(`/blog?page=${Number(page) + 1}`)}>Next</button>
+    <div class="relative inline-block text-lg group cursor-pointer min-w-[150px] text-center">
+      <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+        <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+        <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+        <span class="relative">{props.text}</span>
+      </span>
+      <span
+        class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
+        data-rounded="rounded-lg"
+      ></span>
     </div>
   );
 }
-
-export async function getServerSideProps({ query }) {
-  console.log(query);
-
-  const res = await fetch(
-    `https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=12&offset=${offest}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: undefined,
-    }
-  );
-  const data = await res.json();
-  return {
-    props: {
-      results: data,
-    },
-  };
-}
-
-// export default function PageButton() {
-
-//   const [page, setPage] = useState(1);
-//   const [totalPages, setTotalPages] = useState(10);
-
-//   const url = `https://api.noroff.dev/api/v1/auction/listings?sort=created&sortOrder=desc&_active=true&_seller=true&limit=12&page=${page}`;
-
-//   return (
-//     <>
-//       <div class="flex flex-col items-center">
-//         <span class="text-sm text-gray-700 dark:text-gray-400">
-//           Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to{" "}
-//           <span class="font-semibold text-gray-900 dark:text-white">10</span> of <span class="font-semibold text-gray-900 dark:text-white">100</span>{" "}
-//           Entries
-//         </span>
-//         <div class="inline-flex mt-2 xs:mt-0">
-//           <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-//             <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-//               <path
-//                 fill-rule="evenodd"
-//                 d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-//                 clip-rule="evenodd"
-//               ></path>
-//             </svg>
-//             Prev
-//           </button>
-//           <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-//             Next
-//             <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-//               <path
-//                 fill-rule="evenodd"
-//                 d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-//                 clip-rule="evenodd"
-//               ></path>
-//             </svg>
-//           </button>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
