@@ -24,15 +24,14 @@ export default function NewListings() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (dataInput) => {
     const res = await fetch("https://api.noroff.dev/api/v1/auction/listings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(input),
+      body: dataInput,
     });
     const data = await res.json();
 
@@ -45,14 +44,19 @@ export default function NewListings() {
     }
   };
 
+  const formSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit(JSON.stringify(input));
+  };
+
   return (
     <>
-      <div className="debug-screens flex justify-center items-center">
+      <div className="debug-screens flex justify-center items-center ">
         <div className="">
-          <div className="bg-white h-auto w-[350px] rounded-xl shadow-xl p-6">
+          <div className="bg-white h-[100%] w-[350px] rounded-xl shadow-xl p-6">
             <div className="text-green text-3xl">Make New Listing</div>
-            <div className="flex justify-center items-center h-[450px]">
-              <form>
+            <div className="flex justify-center items-center ">
+              <form onSubmit={formSubmit}>
                 <div className="flex flex-col mt-4 min-w-[250px]">
                   <label className="text-sm font-bold">Post-Title</label>
                   <input
@@ -74,8 +78,7 @@ export default function NewListings() {
                     type="textarea"
                     className="border-b border-gray-300 focus:outline-none focus:border-green"
                     required
-                    pattern="https?://.+"
-                    Title="Please enter a valid URL"
+                    title="Please enter a valid URL"
                   />
                 </div>
                 <div className="flex flex-col mt-4 min-w-[250px]">
@@ -85,7 +88,7 @@ export default function NewListings() {
                       <input
                         className="border-b border-gray-300 focus:outline-none focus:border-green w-full"
                         key={index}
-                        type="text"
+                        type="url"
                         value={media}
                         required
                         pattern="https?://.+"
@@ -98,7 +101,7 @@ export default function NewListings() {
                       />
                     ))}
                     <button onClick={() => setInput({ ...input, media: [...input.media, ""] })}>
-                      <HiPlusSm />
+                      <HiPlusSm size={20} />
                     </button>
                   </div>
                 </div>
@@ -113,7 +116,7 @@ export default function NewListings() {
                   />
                 </div>
                 <div className="pt-24 text-center">
-                  <button onClick={handleSubmit} className="bg-green h-12 w-36 rounded-lg text-white transition duration-200 hover:scale-125 ">
+                  <button type="submit" className="bg-green h-12 w-36 rounded-lg text-white transition duration-200 hover:scale-125 ">
                     Post Listing
                   </button>
                 </div>
