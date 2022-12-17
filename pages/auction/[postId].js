@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Specific from "../../components/Specific";
-// import { useRouter } from "next/router";
 import formatDate from "../../components/tools/DateFormatter";
 
 export async function getServerSideProps({ query }) {
@@ -22,14 +21,13 @@ export async function getServerSideProps({ query }) {
 
 export default function AuctionCard({ results }) {
   const [loader, setLoader] = useState(false);
-  const { id, title, description, media, endsAt } = results;
 
   useEffect(() => {
     setLoader(true);
   }, [results]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center pt-32">
       <Specific info={results} />
     </div>
   );
