@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import { BsFillLightningChargeFill } from "react-icons/bs";
-import AuctionCard from "../components/AuctionCardTest";
+import AuctionCard from "../components/AuctionCard";
 import Link from "next/link";
 import { filterResults } from "../components/tools/SearchFilter";
 import { GoSearch } from "react-icons/go";
@@ -81,7 +81,6 @@ export default function Home({ results }) {
           </div>
           <div className="mt-6 mb-24 flex justify-center">
             <Link href="/auction">
-              {/* <button className="bg-red p-2 mt-8 rounded-3xl text-white min-w-[200px]">Check Out All Listings</button> */}
               <PageButton text="All Listings" />
             </Link>
           </div>

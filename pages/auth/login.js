@@ -63,7 +63,7 @@ export default function Login() {
           <div className="bg-white w-[300px] sm:w-[400px] rounded-xl shadow-xl p-6">
             <div className="text-red text-3xl">Login</div>
             <div className="flex flex-col justify-center items-center h-[350px] sm:h-[400px]">
-              <form onSubmit={userSignIn}>
+              <form onSubmit={userSignIn} className="w-[80%]">
                 <div className="flex flex-col mt-4 ">
                   <label htmlFor="email" className="text-md font-bold">
                     Email
