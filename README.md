@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This is a project for our semester exam 2022 at Noroff Fagskole. The project is a auction website for a fictional auction site. The project is built with Next.js and uses an API that we got given by Noroff to interact with the database.
 
-We created a design for the website in Figma and then wrote it into code. The website functionality is to be able to create an account, login, create auctions, and view your own auctions. Your also able to view other users auctions and bid on them. The website is also responsive and works on mobile devices.
+We created a design for the website in Figma and then wrote it into code. The website functionality is to be able to create an account, login, create listings, and view your own listings. Your also able to view other users listings and bid on them. The website is also responsive and works on mobile devices.
 
 Things we implemented that we learned during the semester:
 
