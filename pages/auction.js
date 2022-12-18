@@ -91,7 +91,7 @@ export default function Auction({ results }) {
 
           <div className="pb-40 pt-10 flex justify-center items-center gap-6">
             <div onClick={sliceStart === 0 ? null : handlePagePrevious} className={sliceStart === 0 ? "hover:cursor-not-allowed" : ""}>
-              <PageButton text={"Previous Page"} />
+              <PageButton text={"Prev Page"} />
             </div>
             <div className="text-3xl font-bold">{sliceStart / 12 + 1}</div>
             <div onClick={handlePageNext}>
