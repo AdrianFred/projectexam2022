@@ -56,8 +56,8 @@ export default function Home({ results }) {
         <Header />
         <div className="flex justify-center pt-6">
           <form onSubmit={searchButton} className="flex justify-center items-center">
-            <label htmlFor="search" />
-            <input type="text" onChange={searchInput} />
+            <label for="searchThings" />
+            <input type="text" name="searchThings" id="searchThings" onChange={searchInput} />
             <button className="pl-4" type="submit">
               <GoSearch size={24} />
             </button>
