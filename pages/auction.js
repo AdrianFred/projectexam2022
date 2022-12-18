@@ -58,7 +58,7 @@ export default function Auction({ results }) {
   return (
     <>
       <Head>
-        <title>Auctions</title>
+        <title>Auctions | Auction House</title>
         <meta name="description" content="Auctions" />
         <lang content="en" />
       </Head>

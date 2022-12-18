@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import Specific from "../../components/Specific";
 
@@ -26,8 +27,17 @@ export default function AuctionCard({ results }) {
   }, [results]);
 
   return (
-    <div className="debug-screens flex items-center justify-center py-32">
-      <Specific info={results} />
-    </div>
+    <>
+      <Head>
+        <title>{results.title} | Auction House</title>
+        <meta name="description" content="Auction" />
+        <link rel="icon" href="/favicon.ico" />
+        <lang lang="en-us" />
+      </Head>
+
+      <div className="debug-screens flex items-center justify-center py-32">
+        <Specific info={results} />
+      </div>
+    </>
   );
 }
