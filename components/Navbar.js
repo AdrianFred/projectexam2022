@@ -8,14 +8,17 @@ import logoImg from "../public/assets/Logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [shadow, setShadow] = useState(true);
-  const [navColor, setNavColor] = useState("#1f2937");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [name, setName] = useState("");
+  const [credits, setCredits] = useState(0);
+  let uppercaseName = name.charAt(0).toUpperCase() + name.slice(1);
   const router = useRouter();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setLoggedIn(true);
+      setName(localStorage.getItem("name"));
+      setCredits(localStorage.getItem("credits"));
     }
   }, []);
 
@@ -41,7 +44,7 @@ const Navbar = () => {
           {!loggedIn ? (
             <ul className="hidden md:flex items-center gap-8 ">
               <Link href="/">
-                <li className=" text-sm uppercase hover:border-b ">Home</li>
+                <li className=" text-sm uppercase hover:border-b border-red ">Home</li>
               </Link>
               <Link href="/auction">
                 <li className=" text-sm uppercase hover:border-b border-red">Auctions</li>
@@ -50,13 +53,16 @@ const Navbar = () => {
                 <li className=" text-sm uppercase hover:border-b border-red">Profile</li>
               </Link>
               <Link href="/auth/login">
-                <li className=" text-sm uppercase border-[3px] border-green-600 p-1 rounded-lg hover:bg-green-600 hover:text-white ">Log in</li>
+                <li className=" text-sm uppercase hover:border-b border-red">Log in</li>
+              </Link>
+              <Link href="/auth/register">
+                <li className=" text-sm uppercase hover:border-b border-red">register</li>
               </Link>
             </ul>
           ) : (
             <ul className="hidden md:flex items-center gap-8">
               <Link href="/">
-                <li className=" text-sm uppercase hover:border-b ">Home</li>
+                <li className=" text-sm uppercase hover:border-b border-red ">Home</li>
               </Link>
               <Link href="/auction">
                 <li className=" text-sm uppercase hover:border-b border-red">Auctions</li>
@@ -68,10 +74,7 @@ const Navbar = () => {
                 <li className=" text-sm uppercase hover:border-b border-red">Profile</li>
               </Link>
               <Link href="/auth/login">
-                <li
-                  onClick={handleLogout}
-                  className=" text-sm uppercase border-[3px] border-red p-1 rounded-lg hover:bg-red-500 hover:text-white hover:border-red-500 "
-                >
+                <li onClick={handleLogout} className=" text-sm uppercase hover:border-b border-red">
                   Logout
                 </li>
               </Link>
@@ -105,51 +108,93 @@ const Navbar = () => {
             </div>
           </div>
           <div className="py-4 flex flex-col">
-            <ul>
-              <Link href="/">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  Home
-                </li>
-              </Link>
-              <Link href="/auction">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  Auctions
-                </li>
-              </Link>
-              <Link href="/profile">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  Profile
-                </li>
-              </Link>
-            </ul>
+            {!loggedIn ? (
+              <ul>
+                <Link href="/">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Home
+                  </li>
+                </Link>
+                <Link href="/auction">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Auctions
+                  </li>
+                </Link>
+                <Link href="/profile">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Profile
+                  </li>
+                </Link>
+                <Link href="/auth/login">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Log in
+                  </li>
+                </Link>
+                <Link href="/auth/register">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Register
+                  </li>
+                </Link>
+              </ul>
+            ) : (
+              <ul>
+                <Link href="/">
+                  <li onClick={toggleNav} className="py-4 text-base ">
+                    Home
+                  </li>
+                </Link>
+                <Link href="/auction">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Auctions
+                  </li>
+                </Link>
+                <Link href="/listing">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Post A Listing
+                  </li>
+                </Link>
+                <Link href="/profile">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Profile
+                  </li>
+                </Link>
+                <Link href="/auth/login">
+                  <li onClick={handleLogout} className="py-4 text-base">
+                    Logout
+                  </li>
+                </Link>
+              </ul>
+            )}
+
             <div className="pt-10">
-              <p className="uppercase tracking-widest text-red ">Logged in as</p>
-              <div className="flex items-center justify-around my-4 w-full ">
-                {!loggedIn ? (
-                  <Link href="/auth/login">
-                    <button onClick={toggleNav} className="py-4 px-8 bg-green-700 rounded-xl text-white">
-                      Log in
-                    </button>
-                  </Link>
-                ) : (
-                  <Link href="/profile">
-                    <button onClick={toggleNav} className="py-4 px-8 bg-red rounded-xl text-white">
-                      Profile
-                    </button>
-                  </Link>
-                )}
-                {!loggedIn ? (
-                  <Link href="/auth/register">
-                    <button onClick={toggleNav} className="py-4 px-8 bg-green-700 rounded-xl text-white">
-                      Sign up
-                    </button>
-                  </Link>
-                ) : (
-                  <button onClick={handleLogout} className="py-4 px-8 bg-red rounded-xl text-white">
-                    Log out
-                  </button>
-                )}
-              </div>
+              {loggedIn ? (
+                <div>
+                  <div>
+                    <p className="uppercase tracking-widest text-red ">Logged in as</p>
+                  </div>
+                  <div className="">
+                    <div className="flex items-center gap-2 mt-4">
+                      <p className="text-lg">Name: </p>
+                      <p className="text-lg font-bold">{uppercaseName}</p>
+                    </div>
+                    <div className="flex items-center gap-2 mt-2">
+                      <p className="text-lg">Credits: </p>
+                      <p className="text-lg font-bold">{credits}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                // <div className="flex items-center gap-4">
+                //   <div className="flex items-center gap-2">
+                //     <p className="text-sm">Credits: </p>
+                //     <p className="text-sm font-bold">{credits}</p>
+
+                //     <p className="text-sm">Name: </p>
+                //     <p className="text-sm font-bold">{name}</p>
+                //   </div>
+                // </div>
+                <div className="flex items-center gap-4"></div>
+              )}
             </div>
           </div>
         </div>

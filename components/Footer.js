@@ -18,9 +18,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-center">
           <p className="text-sm">© Auction House</p>
         </div>
-        <div>
-          <div>Welcome: {TestName}</div>
-        </div>
+        <div>{loggedIn ? <p className="text-sm">Welcome: {TestName}</p> : <p className="text-sm">Welcome: Guest</p>}</div>
       </div>
     </footer>
   );

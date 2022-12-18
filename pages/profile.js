@@ -9,10 +9,8 @@ export default function Profile() {
   const [button, setButton] = useState(false);
   const [avatar, setAvatar] = useState("");
   const router = useRouter();
-
-  const uppercaseFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  let uppercaseName = userInfo.name?.charAt(0).toUpperCase() + userInfo.name?.slice(1);
+  let uppercaseEmail = userInfo.email?.charAt(0).toUpperCase() + userInfo.email?.slice(1);
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -95,14 +93,11 @@ export default function Profile() {
           <div className="text-lg pt-8">
             <div>
               <p className="text-red">Name</p>
-              <p className="ml-4">{name}</p>
-              <p className="ml-4">{userInfo.name}</p>
-              {/* <p className="ml-4">{uppercaseFirstLetter(userInfo.name)}</p> */}
+              <p className="ml-4">{uppercaseName}</p>
             </div>
             <div>
               <p className="text-red">Email</p>
-              <p className="ml-4">{userInfo.email}</p>
-              {/* <p className="ml-4">{uppercaseFirstLetter(userInfo.email)}</p> */}
+              <p className="ml-4">{uppercaseEmail}</p>
             </div>
             <div>
               <p className="text-red">Credits</p>

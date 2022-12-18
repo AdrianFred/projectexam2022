@@ -12,7 +12,7 @@ export default function Header() {
           </p>
           <div className="flex justify-center pt-6">
             <Link href="/auction">
-              <button className="bg-red px-6 py-2 rounded-2xl text-white">Start Browsing</button>
+              <button className="bg-red px-6 py-2 rounded-lg text-white hover:scale-125 ease-in duration-100">Start Browsing</button>
             </Link>
           </div>
         </div>
