@@ -157,7 +157,7 @@ export default function Specific({ info }) {
               <div className="p-4">
                 <ul className="mt-4">
                   {sortedBids.slice(0, 4).map((bid) => (
-                    <li key={bid.id} className="flex justify-between items-center px-6 mb-4 border border-black rounded-xl">
+                    <li key={bid.id} className="flex justify-between items-center px-2 mb-4 border border-black rounded-xl">
                       <div className="flex gap-4 items-center">
                         <RiAuctionFill size={24} className="text-red" />
                         <div>
