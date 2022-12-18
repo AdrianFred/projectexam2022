@@ -64,7 +64,7 @@ export default function Profile() {
             )}
 
             <div className="flex justify-center pt-6">
-              <button onClick={handleButton} className="bg-red p-3 rounded-3xl text-white ">
+              <button onClick={handleButton} className="bg-red p-3 rounded-lg text-white ">
                 Change profile picture?
               </button>
             </div>
@@ -82,7 +82,7 @@ export default function Profile() {
                   title="Please enter a valid url, starting with https://"
                   placeholder="https://..."
                 />
-                <button type="submit" className="bg-red p-3 rounded-3xl text-white max-w-[150px] min-w-[150px] mx-auto mt-6">
+                <button type="submit" className="bg-red p-3 rounded-lg text-white max-w-[150px] min-w-[150px] mx-auto mt-6">
                   Submit
                 </button>
               </form>
