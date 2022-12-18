@@ -13,7 +13,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-gray-200 py-5 fixed bottom-0 w-full">
+    <footer className="bg-gray-200 py-5 fixed bottom-0 w-full z-10">
       <div className="flex items-center justify-between px-6">
         <div className="flex flex-col items-center justify-center">
           <p className="text-sm">© Auction House</p>
