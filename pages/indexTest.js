@@ -58,7 +58,7 @@ export default function Home({ results }) {
 
       <div className="mt-6">
         <div className="flex justify-center items-center gap-1">
-          <BsFillLightningChargeFill className="text-green" />
+          <BsFillLightningChargeFill className="text-red" />
           <div className=" text-2xl">Recent Auctions</div>
         </div>
         {/* <div className="mt-6">
@@ -75,7 +75,7 @@ export default function Home({ results }) {
         </div>
         <div className="mt-6 mb-24 flex justify-center">
           <Link href="/auction">
-            <button className="bg-green p-2 mt-8 rounded-3xl text-white min-w-[200px]">Check Out All Listings</button>
+            <button className="bg-red p-2 mt-8 rounded-3xl text-white min-w-[200px]">Check Out All Listings</button>
           </Link>
         </div>
       </div>

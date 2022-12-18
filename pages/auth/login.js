@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -51,9 +52,9 @@ export default function Login() {
   return (
     <div className="debug-screens min-h-screen flex justify-center items-center">
       <div className="">
-        <div className="bg-white h-[500px] w-[350px] rounded-xl shadow-xl p-6">
-          <div className="text-green text-3xl">Login</div>
-          <div className="flex justify-center items-center h-[450px]">
+        <div className="bg-white w-[400px] rounded-xl shadow-xl p-6">
+          <div className="text-red text-3xl">Login</div>
+          <div className="flex flex-col justify-center items-center h-[400px]">
             <form onSubmit={userSignIn}>
               <div className="flex flex-col mt-4 ">
                 <label className="text-md font-bold">Email</label>
@@ -61,7 +62,7 @@ export default function Login() {
                   onChange={changeInput}
                   name="email"
                   type="email"
-                  className="border-b border-gray-300 focus:outline-none focus:border-green"
+                  className="border-b border-gray-300 focus:outline-none focus:border-red"
                   pattern="^[\w\-.]+@stud.?noroff.no$|^[\w\-.]+@?noroff.no$"
                   title="Only users with a Noroff email account may sign up. Email must end in (stud.)noroff.no"
                 />
@@ -72,15 +73,20 @@ export default function Login() {
                   onChange={changeInput}
                   name="password"
                   type="password"
-                  className="border-b border-gray-300 focus:outline-none focus:border-green"
+                  className="border-b border-gray-300 focus:outline-none focus:border-red"
                   required
                   minLength={8}
                 />
               </div>
-              <div className="pt-24 text-center">
-                <button className="bg-green h-12 w-24 rounded-lg text-white">Login</button>
+              <div className="pt-16 text-center">
+                <button className="bg-red h-12 w-24 rounded-lg text-white">Login</button>
               </div>
             </form>
+          </div>
+          <div className="text-center">
+            <Link href="/auth/register">
+              <button>Click Here to register</button>
+            </Link>
           </div>
         </div>
       </div>

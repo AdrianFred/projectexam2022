@@ -33,7 +33,7 @@ export default function Auction({}) {
         <div>
           <div>
             <div className="flex justify-center items-center gap-1">
-              <BsFillLightningChargeFill className="text-green" />
+              <BsFillLightningChargeFill className="text-red" />
               <div className=" text-2xl">Live Auctions</div>
             </div>
           </div>

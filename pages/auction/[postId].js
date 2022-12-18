@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Specific from "../../components/Specific";
-import formatDate from "../../components/tools/DateFormatter";
 
 export async function getServerSideProps({ query }) {
   const { postId } = query;
@@ -27,7 +26,7 @@ export default function AuctionCard({ results }) {
   }, [results]);
 
   return (
-    <div className="flex flex-col items-center justify-center pt-32">
+    <div className="debug-screens flex items-center justify-center py-32">
       <Specific info={results} />
     </div>
   );

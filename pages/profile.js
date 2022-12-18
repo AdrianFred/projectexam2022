@@ -54,10 +54,10 @@ export default function Profile() {
   };
 
   return (
-    <div className="debug-screens pt-32">
+    <div className="debug-screens py-32 ">
       <div className="flex justify-center">
-        <div>
-          <div className="text-2xl text-green font-semibold">Profile</div>
+        <div className="shadow-xl p-12 rounded-xl bg-white">
+          <div className="text-2xl text-red font-semibold">Profile</div>
           <div className="pt-6">
             {!userInfo.avatar ? (
               <Image src={safetyImg} className="w-[300px] rounded-2xl border-2" alt="An image of a default user with no avatar" />
@@ -66,7 +66,7 @@ export default function Profile() {
             )}
 
             <div className="flex justify-center pt-6">
-              <button onClick={handleButton} className="bg-green p-3 rounded-3xl text-white ">
+              <button onClick={handleButton} className="bg-red p-3 rounded-3xl text-white ">
                 Change profile picture?
               </button>
             </div>
@@ -75,7 +75,7 @@ export default function Profile() {
                 <label className=" p-3 ">New Url:</label>
                 <input
                   type="textarea"
-                  className="p-3 rounded-3xl  max-w-[400px]"
+                  className="p-3 rounded-3xl  max-w-[300px] border-2 border-black"
                   onChange={(e) => {
                     setAvatar(e.target.value);
                   }}
@@ -84,7 +84,7 @@ export default function Profile() {
                   title="Please enter a valid url, starting with https://"
                   placeholder="https://..."
                 />
-                <button type="submit" className="bg-green p-3 rounded-3xl text-white max-w-[150px] min-w-[150px] mx-auto mt-4">
+                <button type="submit" className="bg-red p-3 rounded-3xl text-white max-w-[150px] min-w-[150px] mx-auto mt-6">
                   Submit
                 </button>
               </form>
@@ -94,18 +94,18 @@ export default function Profile() {
           </div>
           <div className="text-lg pt-8">
             <div>
-              <p className="text-green">Name</p>
+              <p className="text-red">Name</p>
               <p className="ml-4">{name}</p>
               <p className="ml-4">{userInfo.name}</p>
               {/* <p className="ml-4">{uppercaseFirstLetter(userInfo.name)}</p> */}
             </div>
             <div>
-              <p className="text-green">Email</p>
+              <p className="text-red">Email</p>
               <p className="ml-4">{userInfo.email}</p>
               {/* <p className="ml-4">{uppercaseFirstLetter(userInfo.email)}</p> */}
             </div>
             <div>
-              <p className="text-green">Credits</p>
+              <p className="text-red">Credits</p>
               <p className="ml-4">
                 <span className="font-bold">{userInfo.credits}</span> Credits available
               </p>

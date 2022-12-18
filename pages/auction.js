@@ -1,8 +1,8 @@
 import AuctionCard from "../components/AuctionCardTest";
-import { useEffect, useState } from "react";
-import { BsFillLightningChargeFill } from "react-icons/bs";
+import { useState } from "react";
 import Head from "next/head";
 import { GoSearch } from "react-icons/go";
+import { BsFillLightningChargeFill } from "react-icons/bs";
 import { filterResults } from "../components/tools/SearchFilter";
 import PageButton from "../components/PageButton";
 
@@ -66,7 +66,7 @@ export default function Auction({ results }) {
         <div>
           <div>
             <div className="flex justify-center items-center gap-1">
-              <BsFillLightningChargeFill size={20} className="text-green" />
+              <BsFillLightningChargeFill size={20} className="text-red" />
               <div className=" text-2xl font-bold">Live Auctions</div>
             </div>
           </div>
@@ -78,8 +78,7 @@ export default function Auction({ results }) {
               </button>
             </form>
           </div>
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1400px] mx-auto">
-            {/* <div className="flex flex-col items-center justify-center gap-4 max-w-[1200px] mx-auto md:grid md:grid-cols-3 md:gap-4 2xl:grid-cols-4 2xl:max-w-[1600px] 2xl:gap-x-0"> */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:max-w-3xl lg:grid-cols-3 lg:max-w-6xl xl:grid-cols-4 xl:max-w-[1450px] mx-auto">
             {search.length !== undefined ? (
               search.slice(sliceStart, slice).map((result) => {
                 return <AuctionCard key={result.id} auctions={result} />;
@@ -87,15 +86,6 @@ export default function Auction({ results }) {
             ) : (
               <div className="text-2xl">No auctions found</div>
             )}
-            {/* {search !== undefined ? (
-              search.map((result) => {
-                if (result.media.length !== 0) {
-                  return <AuctionCard key={result.id} auctions={result} />;
-                }
-              })
-            ) : (
-              <div className="text-2xl w-screen text-center">No auctions found</div>
-            )} */}
           </div>
 
           <div className="pb-40 pt-10 flex justify-center items-center gap-6">
