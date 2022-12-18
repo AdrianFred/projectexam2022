@@ -50,6 +50,7 @@ export default function Home({ results }) {
         <title>Home | Auction House</title>
         <meta name="description" content="Auction" />
         <link rel="icon" href="/favicon.ico" />
+        <lang lang="en-us" />
       </Head>
       <div className="debug-screens pt-20">
         <Header />
