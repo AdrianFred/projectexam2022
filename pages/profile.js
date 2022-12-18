@@ -51,7 +51,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="debug-screens py-32 ">
+    <div className="py-32">
       <div className="flex justify-center">
         <div className="shadow-xl p-12 rounded-xl bg-white">
           <div className="text-2xl text-red font-semibold">Profile</div>
