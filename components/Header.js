@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="debug-screens ">
+    <div className="">
       <div className="bg-black min-h-[250px] min-w-full flex justify-center items-center">
         <div className="">
           <h2 className="text-white text-base font-bold rounded-lg outline outline-red text-center">Welcome to the Auction House</h2>

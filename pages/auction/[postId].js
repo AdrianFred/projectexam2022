@@ -35,7 +35,7 @@ export default function AuctionCard({ results }) {
         <lang lang="en-us" />
       </Head>
 
-      <div className="debug-screens flex items-center justify-center py-32">
+      <div className="flex items-center justify-center py-32">
         <Specific info={results} />
       </div>
     </>

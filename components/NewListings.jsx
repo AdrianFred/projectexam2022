@@ -51,7 +51,7 @@ export default function NewListings() {
 
   return (
     <>
-      <div className="debug-screens flex justify-center items-center ">
+      <div className="flex justify-center items-center ">
         <div className="">
           <div className="bg-white h-[100%] w-[350px] rounded-xl shadow-xl p-6">
             <div className="text-red text-3xl">Make New Listing</div>
