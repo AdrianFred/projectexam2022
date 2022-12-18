@@ -2,84 +2,102 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { BsFillPersonLinesFill } from "react-icons/bs";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/router";
+import logoImg from "../public/assets/Logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [shadow, setShadow] = useState(false);
-  const [navBg, setNavBg] = useState("#ecf0f3");
-  const [navColor, setNavColor] = useState("#1f2937");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [name, setName] = useState("");
+  const [credits, setCredits] = useState(0);
+  let uppercaseName = name.charAt(0).toUpperCase() + name.slice(1);
   const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname === "/property") {
-      setNavBg("transparent");
-      setNavColor("#ecf0f3");
-    } else {
-      setNavBg("#ecf0f3");
-      setNavColor("#1f2937");
+    if (localStorage.getItem("token")) {
+      setLoggedIn(true);
+      setName(localStorage.getItem("name"));
+      setCredits(localStorage.getItem("credits"));
     }
-  }, [router]);
+  }, []);
 
   const toggleNav = () => {
     setNav(!nav);
   };
 
-  useEffect(() => {
-    const handleShadow = () => {
-      if (window.scrollY >= 90) {
-        setShadow(true);
-      } else {
-        setShadow(false);
-      }
-    };
-    window.addEventListener("scroll", handleShadow);
-  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("credits");
+    localStorage.removeItem("name");
+    setLoggedIn(false);
+    router.reload();
+  };
 
   return (
-    <div style={{ backgroundColor: `${navBg}` }} className={shadow ? "fixed w-full h-20 shadow-xl z-[100]" : "fixed w-full h-20 z-[100]"}>
+    <div className="fixed w-full h-20 shadow-xl z-[100] bg-white">
       <div className="flex justify-between items-center w-full h-full px-8 2xl:px-16 ">
         <Link href="/">
-          <Image src="/../public/assets/Logo.png" alt="/" width={100} height={100} />
+          <Image src={logoImg} alt="/" width={100} height={100} priority />
         </Link>
         <div>
-          <ul style={{ color: `${navColor}` }} className="hidden md:flex">
-            <Link href="/">
-              <li className="ml-10 text-sm uppercase hover:border-b">Home</li>
-            </Link>
-            <Link href="/auctions">
-              <li className="ml-10 text-sm uppercase hover:border-b">Auctions</li>
-            </Link>
-            <Link href="/about">
-              <li className="ml-10 text-sm uppercase hover:border-b">About</li>
-            </Link>
-            <Link href="/profile">
-              <li className="ml-10 text-sm uppercase hover:border-b">Profile</li>
-            </Link>
-            <Link href="/#contact">
-              <li className="ml-10 text-sm uppercase hover:border-b">Contact</li>
-            </Link>
-          </ul>
+          {!loggedIn ? (
+            <ul className="hidden md:flex items-center gap-8 ">
+              <Link href="/">
+                <li className=" text-sm uppercase hover:border-b border-red ">Home</li>
+              </Link>
+              <Link href="/auction">
+                <li className=" text-sm uppercase hover:border-b border-red">Auctions</li>
+              </Link>
+              <Link href="/profile">
+                <li className=" text-sm uppercase hover:border-b border-red">Profile</li>
+              </Link>
+              <Link href="/auth/login">
+                <li className=" text-sm uppercase hover:border-b border-red">Log in</li>
+              </Link>
+              <Link href="/auth/register">
+                <li className=" text-sm uppercase hover:border-b border-red">register</li>
+              </Link>
+            </ul>
+          ) : (
+            <ul className="hidden md:flex items-center gap-8">
+              <Link href="/">
+                <li className=" text-sm uppercase hover:border-b border-red ">Home</li>
+              </Link>
+              <Link href="/auction">
+                <li className=" text-sm uppercase hover:border-b border-red">Auctions</li>
+              </Link>
+              <Link href="/listing">
+                <li className=" text-sm uppercase hover:border-b border-red">Post A Listing</li>
+              </Link>
+              <Link href="/profile">
+                <li className=" text-sm uppercase hover:border-b border-red">Profile</li>
+              </Link>
+              <Link href="/auth/login">
+                <li onClick={handleLogout} className=" text-sm uppercase hover:border-b border-red">
+                  Logout
+                </li>
+              </Link>
+            </ul>
+          )}
+
           <div onClick={toggleNav} className="md:hidden">
             <AiOutlineMenu size={25} />
           </div>
         </div>
       </div>
-      <div className={nav ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70" : ""}>
+      <div className={nav ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 z-20" : ""}>
         <div
           className={
             nav
-              ? "fixed left-0 top-0 w-[100%] sm:w-[60%] md:w-[45%] h-screen bg-[#ecf0f3] p-10 ease-in duration-500"
+              ? "fixed left-0 top-0 w-[100%] sm:w-[70%] h-screen bg-[#ecf0f3] p-10 ease-in duration-500"
               : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
           <div>
             <div className="flex w-full items-center justify-between">
               <Link href="/">
-                <Image src="/../public/assets/Logo.png" alt="/" width={150} height={35} />
+                <Image src={logoImg} alt="/" width={150} height={150} />
               </Link>
               <div onClick={toggleNav} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer">
                 <AiOutlineClose size={25} />
@@ -90,38 +108,93 @@ const Navbar = () => {
             </div>
           </div>
           <div className="py-4 flex flex-col">
-            <ul>
-              <Link href="/">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  Home
-                </li>
-              </Link>
-              <Link href="/auctions">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  Auctions
-                </li>
-              </Link>
-              <Link href="/about">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  About
-                </li>
-              </Link>
-              <Link href="/profile">
-                <li onClick={toggleNav} className="py-4 text-sm">
-                  Profile
-                </li>
-              </Link>
-            </ul>
+            {!loggedIn ? (
+              <ul>
+                <Link href="/">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Home
+                  </li>
+                </Link>
+                <Link href="/auction">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Auctions
+                  </li>
+                </Link>
+                <Link href="/profile">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Profile
+                  </li>
+                </Link>
+                <Link href="/auth/login">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Log in
+                  </li>
+                </Link>
+                <Link href="/auth/register">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Register
+                  </li>
+                </Link>
+              </ul>
+            ) : (
+              <ul>
+                <Link href="/">
+                  <li onClick={toggleNav} className="py-4 text-base ">
+                    Home
+                  </li>
+                </Link>
+                <Link href="/auction">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Auctions
+                  </li>
+                </Link>
+                <Link href="/listing">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Post A Listing
+                  </li>
+                </Link>
+                <Link href="/profile">
+                  <li onClick={toggleNav} className="py-4 text-base">
+                    Profile
+                  </li>
+                </Link>
+                <Link href="/auth/login">
+                  <li onClick={handleLogout} className="py-4 text-base">
+                    Logout
+                  </li>
+                </Link>
+              </ul>
+            )}
+
             <div className="pt-10">
-              <p className="uppercase tracking-widest text-green-500 ">Logged in as</p>
-              <div className="flex items-center justify-around my-4 w-full sm:w-[80%]">
-                <Link href="/login">
-                  <button className="p-3 bg-green-500 rounded-xl">Log in</button>
-                </Link>
-                <Link href="/register">
-                  <button className="p-3 bg-green-500 rounded-xl">Sign up</button>
-                </Link>
-              </div>
+              {loggedIn ? (
+                <div>
+                  <div>
+                    <p className="uppercase tracking-widest text-red ">Logged in as</p>
+                  </div>
+                  <div className="">
+                    <div className="flex items-center gap-2 mt-4">
+                      <p className="text-lg">Name: </p>
+                      <p className="text-lg font-bold">{uppercaseName}</p>
+                    </div>
+                    <div className="flex items-center gap-2 mt-2">
+                      <p className="text-lg">Credits: </p>
+                      <p className="text-lg font-bold">{credits}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                // <div className="flex items-center gap-4">
+                //   <div className="flex items-center gap-2">
+                //     <p className="text-sm">Credits: </p>
+                //     <p className="text-sm font-bold">{credits}</p>
+
+                //     <p className="text-sm">Name: </p>
+                //     <p className="text-sm font-bold">{name}</p>
+                //   </div>
+                // </div>
+                <div className="flex items-center gap-4"></div>
+              )}
             </div>
           </div>
         </div>
