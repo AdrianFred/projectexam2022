@@ -52,7 +52,7 @@ export default function Home({ results }) {
         <link rel="icon" href="/favicon.ico" />
         <lang lang="en-us" />
       </Head>
-      <div className="debug-screens pt-20">
+      <div className="pt-20">
         <Header />
         <div className="flex justify-center pt-6">
           <form onSubmit={searchButton} className="flex justify-center items-center">

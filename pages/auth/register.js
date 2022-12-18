@@ -68,7 +68,7 @@ export default function Login() {
         <lang lang="en-us" />
         <icon rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="debug-screens min-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center">
         <div className="">
           <div className="bg-white sm:w-[400px] rounded-xl shadow-xl p-6">
             <div className="text-red text-3xl">Register</div>

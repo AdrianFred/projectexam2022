@@ -62,7 +62,7 @@ export default function Auction({ results }) {
         <meta name="description" content="Auctions" />
         <lang content="en" />
       </Head>
-      <div className="debug-screens pt-32">
+      <div className="pt-32">
         <div>
           <div>
             <div className="flex justify-center items-center gap-1">
