@@ -56,7 +56,7 @@ export default function Home({ results }) {
         <Header />
         <div className="flex justify-center pt-6">
           <form onSubmit={searchButton} className="flex justify-center items-center">
-            <label for="searchThings"></label>
+            <label htmlFor="searchThings"></label>
             <input type="text" name="searchThings" id="searchThings" onChange={searchInput} className="rounded-lg pl-2" />
             <button className="pl-4" type="submit">
               <GoSearch size={24} aria-label="Button to search through different listings" />

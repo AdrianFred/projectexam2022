@@ -60,14 +60,17 @@ export default function Login() {
       </Head>
       <div className="debug-screens min-h-screen flex justify-center items-center">
         <div className="">
-          <div className="bg-white w-[400px] rounded-xl shadow-xl p-6">
+          <div className="bg-white w-[300px] sm:w-[400px] rounded-xl shadow-xl p-6">
             <div className="text-red text-3xl">Login</div>
-            <div className="flex flex-col justify-center items-center h-[400px]">
+            <div className="flex flex-col justify-center items-center h-[350px] sm:h-[400px]">
               <form onSubmit={userSignIn}>
                 <div className="flex flex-col mt-4 ">
-                  <label className="text-md font-bold">Email</label>
+                  <label htmlFor="email" className="text-md font-bold">
+                    Email
+                  </label>
                   <input
                     onChange={changeInput}
+                    id="email"
                     name="email"
                     type="email"
                     className="border-b border-gray-300 focus:outline-none focus:border-red"
@@ -76,9 +79,12 @@ export default function Login() {
                   />
                 </div>
                 <div className="flex flex-col mt-4">
-                  <label className="text-md font-bold">Password</label>
+                  <label htmlFor="password" className="text-md font-bold">
+                    Password
+                  </label>
                   <input
                     onChange={changeInput}
+                    id="password"
                     name="password"
                     type="password"
                     className="border-b border-gray-300 focus:outline-none focus:border-red"

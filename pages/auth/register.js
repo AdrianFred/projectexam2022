@@ -70,14 +70,17 @@ export default function Login() {
       </Head>
       <div className="debug-screens min-h-screen flex justify-center items-center">
         <div className="">
-          <div className="bg-white  w-[400px] rounded-xl shadow-xl p-6">
+          <div className="bg-white sm:w-[400px] rounded-xl shadow-xl p-6">
             <div className="text-red text-3xl">Register</div>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[350px] sm:h-[400px]">
               <form onSubmit={passwordMatch}>
                 <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Name</label>
+                  <label htmlFor="name" className="text-sm font-bold">
+                    Name
+                  </label>
                   <input
                     onChange={changeInput}
+                    id="name"
                     placeholder="Peter Griffin"
                     name="name"
                     type="text"
@@ -87,10 +90,13 @@ export default function Login() {
                     maxLength={20}
                   />
                 </div>
-                <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Email</label>
+                <div className="flex flex-col mt-4 min-w-[]">
+                  <label htmlFor="email" className="text-sm font-bold">
+                    Email
+                  </label>
                   <input
                     onChange={changeInput}
+                    id="email"
                     placeholder="example.noroff.no"
                     name="email"
                     type="email"
@@ -100,10 +106,13 @@ export default function Login() {
                     title="Only users with a Noroff email account may sign up. Email must end in (stud.)noroff.no"
                   />
                 </div>
-                <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Password</label>
+                <div className="flex flex-col mt-4 min-w-[]">
+                  <label htmlFor="password" className="text-sm font-bold">
+                    Password
+                  </label>
                   <input
                     onChange={changeInput}
+                    id="password"
                     name="password"
                     type="password"
                     className="border-b border-gray-300 focus:outline-none focus:border-red"
@@ -111,10 +120,13 @@ export default function Login() {
                     minLength={8}
                   />
                 </div>
-                <div className="flex flex-col mt-4 min-w-[250px]">
-                  <label className="text-sm font-bold">Confirm Password</label>
+                <div className="flex flex-col mt-4 min-w-[]">
+                  <label htmlFor="passwordConfirm" className="text-sm font-bold">
+                    Confirm Password
+                  </label>
                   <input
                     onChange={changeInput}
+                    id="passwordConfirm"
                     name="passwordConfirmation"
                     type="password"
                     className="border-b border-gray-300 focus:outline-none focus:border-red"

@@ -101,7 +101,7 @@ export default function Specific({ info }) {
         {/* Groups */}
         <div className="">
           {/* Photo gallery */}
-          <div className="h-[300px] w-[80%] mx-auto sm:h-[350px] md:h-[400px] lg:h-[500px] 2xl:w-[100%] ">
+          <div className="h-[300px] w-[80%] mx-auto sm:h-[350px] md:h-[400px] lg:h-[500px] 2xl:w-[100%] 2xl:h-[600px]">
             <MediaGallery media={media} />
           </div>
           {/* Description */}
