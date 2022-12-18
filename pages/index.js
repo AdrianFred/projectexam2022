@@ -59,7 +59,7 @@ export default function Home({ results }) {
             <label for="searchThings">Search Through Listings </label>
             <input type="text" name="searchThings" id="searchThings" onChange={searchInput} />
             <button className="pl-4" type="submit">
-              <GoSearch size={24} />
+              <GoSearch size={24} aria-label="Button to search through different listings" />
             </button>
           </form>
         </div>
