@@ -1,4 +1,4 @@
-import AuctionCard from "../components/AuctionCardTest";
+import AuctionCard from "../components/AuctionCard";
 import { useState } from "react";
 import Head from "next/head";
 import { GoSearch } from "react-icons/go";

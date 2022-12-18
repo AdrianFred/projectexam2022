@@ -91,7 +91,7 @@ const Navbar = () => {
           className={
             nav
               ? "fixed left-0 top-0 w-[100%] sm:w-[70%] h-screen bg-[#ecf0f3] p-10 ease-in duration-500"
-              : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
+              : "fixed left-[-125%] top-0 p-10 ease-in duration-500"
           }
         >
           <div>
@@ -184,15 +184,6 @@ const Navbar = () => {
                   </div>
                 </div>
               ) : (
-                // <div className="flex items-center gap-4">
-                //   <div className="flex items-center gap-2">
-                //     <p className="text-sm">Credits: </p>
-                //     <p className="text-sm font-bold">{credits}</p>
-
-                //     <p className="text-sm">Name: </p>
-                //     <p className="text-sm font-bold">{name}</p>
-                //   </div>
-                // </div>
                 <div className="flex items-center gap-4"></div>
               )}
             </div>

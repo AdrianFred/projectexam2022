@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import safetyImg from "../public/assets/man.jpg";
 import Image from "next/image";
-import { toast } from "react-hot-toast";
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState([]);

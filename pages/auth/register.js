@@ -73,8 +73,8 @@ export default function Login() {
           <div className="bg-white sm:w-[400px] rounded-xl shadow-xl p-6">
             <div className="text-red text-3xl">Register</div>
             <div className="flex justify-center items-center h-[350px] sm:h-[400px]">
-              <form onSubmit={passwordMatch}>
-                <div className="flex flex-col mt-4 min-w-[250px]">
+              <form onSubmit={passwordMatch} className="w-[80%]">
+                <div className="flex flex-col mt-4">
                   <label htmlFor="name" className="text-sm font-bold">
                     Name
                   </label>
@@ -90,7 +90,7 @@ export default function Login() {
                     maxLength={20}
                   />
                 </div>
-                <div className="flex flex-col mt-4 min-w-[]">
+                <div className="flex flex-col mt-4 ">
                   <label htmlFor="email" className="text-sm font-bold">
                     Email
                   </label>
@@ -106,7 +106,7 @@ export default function Login() {
                     title="Only users with a Noroff email account may sign up. Email must end in (stud.)noroff.no"
                   />
                 </div>
-                <div className="flex flex-col mt-4 min-w-[]">
+                <div className="flex flex-col mt-4 ">
                   <label htmlFor="password" className="text-sm font-bold">
                     Password
                   </label>
@@ -120,7 +120,7 @@ export default function Login() {
                     minLength={8}
                   />
                 </div>
-                <div className="flex flex-col mt-4 min-w-[]">
+                <div className="flex flex-col mt-4 ">
                   <label htmlFor="passwordConfirm" className="text-sm font-bold">
                     Confirm Password
                   </label>
