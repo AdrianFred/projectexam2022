@@ -38,6 +38,10 @@ You can view the website here: [https://auction-houses.netlify.app](https://auct
 3. Run `npm run dev` to start the development server
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
 ## Technologies used
 
 - Next.js
