@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Auction House | Project Exam 2022
+
+![image](/public/assets/AuctionHouse.png)
 
 ## Description
 
@@ -46,9 +48,9 @@ You can view the website here: [https://auction-houses.netlify.app](https://auct
 - Prettier
 - ESLint
 
-## Creator
+## Author
 
-- Adrian Fredriksen
+- [Adrian Fredriksen](https:/www.github.com/AdrianFred)
 
 ## Acknowledgements
 
